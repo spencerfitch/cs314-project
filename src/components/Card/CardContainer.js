@@ -6,6 +6,9 @@ const CardContainer = ({ style, children }) => (
     boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
     padding: '1em',
     margin: '1em 0',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     ...style,
   }}>      
     { children }

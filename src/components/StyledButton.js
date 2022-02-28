@@ -1,10 +1,8 @@
 
-import './StyledButton.css'
-
-const StyledButton = ({ onClick, style, children }) => (
+const StyledButton = ({ onClick, style, variant, children }) => (
   <button
     onClick={onClick}
-    className={'btn'}
+    className={`btn ${variant}`}
     style={{
       ...style
     }}
