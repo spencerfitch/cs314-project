@@ -78,7 +78,7 @@ const ClickableEdit = ({ value, setValue }) => {
         }}          
         onClick={() => setIsEditing(true)}
       >
-        { value }        
+        { `✎ ${value} ` }        
       </h1>
     )
   );

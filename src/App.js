@@ -1,55 +1,31 @@
 import { useState } from "react";
-
-import {
-  ClickableEdit,
-  Card,
-  StyledButton,
-  AddNote,
-  SendCard,
-} from "./components";
-import { sampleCards } from "./utils";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { sampleCards } from "./utils";
+
+import { ClickableEdit, StyledButton } from "./components/inputs";
+import { AddNote, AddCollaborator, SendCard } from "./components/modals";
+import Card from './components/Card';
 
 const App = () => {
   const [headingText, setHeadingText] = useState('Happy Birthday Tom');
   const [cards, setCards] = useState(sampleCards);
   const [showAddCard, setShowAddCard] = useState(false);
   const [showSendCard, setShowSendCard] = useState(false);
+  const [showAddCollaborator, setShowAddCollaborator] = useState(false);
 
   const addCard = (card) => setCards([...cards, card]);
 
+  const deleteCard = (idx) => setCards([...cards.slice(0, idx), ...cards.slice(idx+1)]);
+
   const handleAddCard = (message, name, drawing, signature) => {
-    const card = {
-      message, name, drawing, signature
-    };
-
-    console.log(card);
-
-    addCard(card);
+    addCard({ message, name, drawing, signature });
     setShowAddCard(false);
   }
 
-  const cardGroups = [[], [], []];
-
-  cards.forEach((card, idx) => {
-    cardGroups[idx%3].push(card);
-  });
-
   return (
     <div style={{ minHeight: '100vh'}}>
-      {
-        (false) && (
-          <header style={{ backgroundColor: 'lightgray' }}>
-          <h2 style={{ margin: '0', textAlign: 'end', paddingRight: '1em' }}>
-            
-          </h2>
-          </header>
-        )
-      }
-      
-
       <div>
         <div 
           style={{
@@ -58,8 +34,8 @@ const App = () => {
             width: '100%',
             backgroundColor: 'lightcoral',
             alignItems: 'center',
-            height: '4em',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            paddingTop: '.25em',
           }}
         >
           <ClickableEdit
@@ -69,16 +45,17 @@ const App = () => {
           
           <div 
             style={{
-              position: 'absolute',
-              right: '3em',
-              marginTop: '3em',
-              
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              backgroundColor: 'lightblue',
+              padding: '.25em 1em',
+              width: '100%',
+              alignItems: 'right',
             }}
           >
             <StyledButton
               style={{
-                boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-                zIndex: '2',
                 fontSize: 'large',
               }}
               variant={'btn-primary'}
@@ -90,8 +67,17 @@ const App = () => {
             <StyledButton
               style={{
                 marginLeft: '1em',
-                boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-                zIndex: '2',
+                fontSize: 'large',
+              }}
+              variant={'btn-primary'}
+              onClick={() => setShowAddCollaborator(true)}
+            >
+              Add Collaborator
+            </StyledButton>
+
+            <StyledButton
+              style={{
+                marginLeft: '1em',
                 fontSize: 'large',
               }}
               variant={'btn-primary'}
@@ -113,26 +99,48 @@ const App = () => {
         >
           {
             cards.map((card, idx) => (
-              <Card data={card} key={idx}/>
+              <Card 
+                key={idx} 
+                data={card}
+                handleDelete={() => window.confirm('Are you sure you want to delete this card?') && deleteCard(idx)}
+              />
             ))
           }
         </div>
       </div>
       
-      <AddNote
-        show={showAddCard}
-        onSubmit={handleAddCard}
-        onClose={() => setShowAddCard(false)}
-      />
+      {
+        showAddCard && (
+          <AddNote
+            onSubmit={handleAddCard}
+            onCancel={() => setShowAddCard(false)}
+          />
+        )
+      }
 
-      <SendCard
-        show={showSendCard}
-        handleSend={() => {
-          alert('Email Sent')
-          setShowSendCard(false)
-        }}
-        handleCancel={() => setShowSendCard(false)}
-      />
+      {
+        showSendCard && (
+          <SendCard
+            onSubmit={() => {
+              alert('Email Sent');
+              setShowSendCard(false);
+            }}
+            onCancel={() => setShowSendCard(false)}
+          />
+        )
+      }
+      
+      {
+        showAddCollaborator && (
+        <AddCollaborator
+          onSubmit={() => {
+            alert('Email Sent');
+            setShowAddCollaborator(false);
+          }}
+          onCancel={() => setShowAddCollaborator(false)}
+        />
+        )
+      }
       
     </div>
   );

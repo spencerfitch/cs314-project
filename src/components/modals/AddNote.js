@@ -1,18 +1,18 @@
+import React, { createRef, useState } from 'react'; 
 import { Modal } from 'react-bootstrap';
-import CanvasDraw from 'react-canvas-draw';
-import { useState } from 'react'; 
 
-import { StyledButton } from '.';
+import { StyledButton } from '../inputs';
+import { DrawCanvas } from '../canvas';
 
-const AddNote = ({ show, onClose, onSubmit }) => {
+const AddNote = ({ onSubmit, onCancel }) => {
 
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
 
   const [addDrawing, setAddDrawing] = useState(false);
-  const [drawing, setDrawing] = useState();
+  const drawRef = createRef(null);
   const [addSignature, setAddSignature] = useState(false);
-  const [signature, setSignature] = useState();
+  const signatureRef = createRef(null);
 
   const handleSubmit = () => {
     if (!message) {
@@ -25,43 +25,39 @@ const AddNote = ({ show, onClose, onSubmit }) => {
       return;
     }
 
-    onSubmit(message, name, drawing, signature);
+    onSubmit(message, name, drawRef.current?.getSaveData(), signatureRef.current?.getSaveData());
   }
 
   return (
-    <Modal show={show} onHide={onClose}>
+    <Modal show={true} onHide={onCancel}>
       <Modal.Header>
         <Modal.Title>Add a Note</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-      <form>
+      <div>
         <div className="form-group p-2">
           <label htmlFor="taskName">Add drawing? </label>
           <input
             type={'checkbox'}
             className={'form-check-input'}
             style={{ marginLeft: '.5em' }}
-            onChange={(ev) => setAddDrawing(ev.target.checked)}
+            onChange={(ev) => {setAddDrawing(ev.target.checked);} }
           />
           {
             addDrawing && (
-              <div style={{border: '1px solid rgba(0, 0, 0, .2)', width: 'fit-content', margin: '0 auto'}}>
-                <CanvasDraw 
-                  brushRadius={3}
-                  canvasWidth={400}
-                  canvasHeight={200}
-                  hideInterface={true}
-                  lazyRadius={0}
-                  onChange={(ev) => setDrawing(ev.getSaveData())}
-                />
-              </div> 
+              <DrawCanvas
+                ref={drawRef}
+                width={400}
+                height={200}
+              />
             )
           }
+          
         </div>
         
         <div className="form-group p-2">
-          <label htmlFor="taskName">Message</label>
+          <label htmlFor="taskName">Message <span style={{"color":"red"}}>*</span></label>
           <input
             className="form-control"
             placeholder="Message..."
@@ -80,35 +76,33 @@ const AddNote = ({ show, onClose, onSubmit }) => {
           />
           {
             addSignature && (
-              <div style={{border: '1px solid rgba(0, 0, 0, .2)', width: 'fit-content', margin: '0 auto'}}>
-                <CanvasDraw 
-                  brushRadius={3}
-                  canvasWidth={400}
-                  canvasHeight={100}
-                  hideInterface={true}
-                  lazyRadius={0}
-                  onChange={(ev) => setSignature(ev.getSaveData())}
-                />
-              </div> 
+              <DrawCanvas
+                ref={signatureRef}
+                width={400}
+                height={100}
+              />
             )
           }
         </div>
         
         <div className="form-group p-2">
-          <label htmlFor="taskName">Name</label>
+          <label htmlFor="taskName">Name <span style={{"color":"red"}}>*</span></label>
           <input
             className="form-control"
             placeholder="Enter your name..."
             maxLength={500}
             onChange={(ev) => setName(ev.target.value)}
           />
-        </div>       
-      </form>
+        </div>      
+        <div> 
+          <p><span style={{"color":"red"}}>*</span> Required field</p>
+        </div>
+      </div>
         
       </Modal.Body>
 
       <Modal.Footer>
-        <StyledButton onClick={onClose} variant={'btn-secondary'}>
+        <StyledButton onClick={onCancel} variant={'btn-secondary'}>
           Close
         </StyledButton>
         <StyledButton onClick={handleSubmit} variant={'btn-primary'}>
