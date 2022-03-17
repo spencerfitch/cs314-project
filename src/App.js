@@ -9,8 +9,7 @@ import CardView from "./components/CardView";
 
 const ControlButton = ({ onClick, children }) => (
   <StyledButton
-    style={{ fontSize: 'large' }}
-    variant={'primary'}
+    variant={'outline-primary'}
     onClick={onClick}
   >
     {children}
@@ -43,18 +42,20 @@ const App = () => {
           />
         </div>
 
-        <div className={styles.controlContainer}>
-          <ControlButton onClick={() => setShowAddCard(true)}>
-            Add Note
-          </ControlButton>
+        <div className={styles.controlRow}>
+          <div className={styles.controlContainer}>
+            <ControlButton onClick={() => setShowAddCard(true)}>
+              Add Note
+            </ControlButton>
 
-          <ControlButton onClick={() => setShowAddCollaborator(true)}>
-            Add Collaborator
-          </ControlButton>
+            <ControlButton onClick={() => setShowAddCollaborator(true)}>
+              Add Collaborator
+            </ControlButton>
 
-          <ControlButton onClick={() => setShowSendCard(true)}>
-            Send Card
-          </ControlButton>
+            <ControlButton onClick={() => setShowSendCard(true)}>
+              Send Card
+            </ControlButton>
+          </div>
         </div>
 
         <CardView
