@@ -4,7 +4,7 @@
     background-color: #FC7B8A;
 }
 
-.primary:hover, .primary:focus {
+.primary:hover {
     color: #FFF;
     background-color: #FB6376;
 }
@@ -17,7 +17,7 @@
     border: solid 1px #FB6376;
 }
 
-.outlinePrimary:hover, .outlinePrimary:focus {
+.outlinePrimary:hover {
     color: white;
     background-color: #FCB1A6;
 }
