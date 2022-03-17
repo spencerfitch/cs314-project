@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import StyledButton from "../StyledButton";
+import StyledButton from "./StyledButton";
 import styles from './ClickableEdit.module.css';
 
 const ClickableEdit = ({ value, setValue }) => {

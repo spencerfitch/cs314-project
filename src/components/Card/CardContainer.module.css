@@ -1,7 +1,7 @@
 
 .container {
     border-radius: 15px;
-    background-color: rgba(65, 110, 240, 0.31);
+    background-color: #ffdccc;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 1em;
     margin: 1em 0;
@@ -19,9 +19,10 @@
     position: absolute;
     right: -.7em;
     top: 0.2em;
-    background: #eee;
+    background: #f2f2f2;
+    color: #999;
+    border: solid 1px #999;
     text-align: center;
-    border: none;
     width: 2em;
     height: 2em;
     font-weight: bold;

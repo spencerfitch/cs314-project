@@ -1,0 +1,23 @@
+
+.primary {
+    color: #FFF;
+    background-color: #FC7B8A;
+}
+
+.primary:hover, .primary:focus {
+    color: #FFF;
+    background-color: #FB6376;
+}
+
+.outlinePrimary {
+    background-color: transparent;
+    transition: all ease-in-out .2s;
+    background-color: #FFF;
+    color: #FB6376;
+    border: solid 1px #FB6376;
+}
+
+.outlinePrimary:hover, .outlinePrimary:focus {
+    color: white;
+    background-color: #FCB1A6;
+}

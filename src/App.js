@@ -7,9 +7,12 @@ import { ClickableEdit, StyledButton } from "./components/inputs";
 import { AddNote, AddCollaborator, SendCard } from "./components/modals";
 import CardView from "./components/CardView";
 
+// App Color Palette: https://coolors.co/palette/5d2a42-fb6376-fcb1a6-ffdccc-fff9ec
+
 const ControlButton = ({ onClick, children }) => (
   <StyledButton
     variant={'outline-primary'}
+    style={{fontWeight: '700'}}
     onClick={onClick}
   >
     {children}
