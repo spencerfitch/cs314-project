@@ -1,12 +1,23 @@
-import { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
 
-import './App.css';
+import styles from './App.module.css';
+
 import { sampleCards } from "./utils";
-
 import { ClickableEdit, StyledButton } from "./components/inputs";
 import { AddNote, AddCollaborator, SendCard } from "./components/modals";
-import Card from './components/Card';
+import CardView from "./components/CardView";
+
+// App Color Palette: https://coolors.co/palette/5d2a42-fb6376-fcb1a6-ffdccc-fff9ec
+
+const ControlButton = ({ onClick, children }) => (
+  <StyledButton
+    variant={'outline-primary'}
+    style={{fontWeight: '700'}}
+    onClick={onClick}
+  >
+    {children}
+  </StyledButton>
+);
 
 const App = () => {
   const [headingText, setHeadingText] = useState('Happy Birthday Tom');
@@ -25,88 +36,36 @@ const App = () => {
   }
 
   return (
-    <div style={{ minHeight: '100vh'}}>
+    <div className={styles.appContainer}>
       <div>
-        <div 
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            backgroundColor: 'lightcoral',
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingTop: '.25em',
-          }}
-        >
+        <div className={styles.header}>
           <ClickableEdit
             value={headingText}
             setValue={setHeadingText}
           />
-          
-          <div 
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              backgroundColor: 'lightblue',
-              padding: '.25em 1em',
-              width: '100%',
-              alignItems: 'right',
-            }}
-          >
-            <StyledButton
-              style={{
-                fontSize: 'large',
-              }}
-              variant={'btn-primary'}
-              onClick={() => setShowAddCard(true)}
-            >
-              Add a Note
-            </StyledButton>
+        </div>
 
-            <StyledButton
-              style={{
-                marginLeft: '1em',
-                fontSize: 'large',
-              }}
-              variant={'btn-primary'}
-              onClick={() => setShowAddCollaborator(true)}
-            >
+        <div className={styles.controlRow}>
+          <div className={styles.controlContainer}>
+            <ControlButton onClick={() => setShowAddCard(true)}>
+              Add Note
+            </ControlButton>
+
+            <ControlButton onClick={() => setShowAddCollaborator(true)}>
               Add Collaborator
-            </StyledButton>
+            </ControlButton>
 
-            <StyledButton
-              style={{
-                marginLeft: '1em',
-                fontSize: 'large',
-              }}
-              variant={'btn-primary'}
-              onClick={() => setShowSendCard(true)}
-            >
+            <ControlButton onClick={() => setShowSendCard(true)}>
               Send Card
-            </StyledButton>
+            </ControlButton>
           </div>
-          
         </div>
 
-        <div 
-          style={{ 
-            display: 'flex',
-            justifyContent: 'space-around',
-            flexWrap: 'wrap',
-            padding: '1em',
-          }}
-        >
-          {
-            cards.map((card, idx) => (
-              <Card 
-                key={idx} 
-                data={card}
-                handleDelete={() => window.confirm('Are you sure you want to delete this card?') && deleteCard(idx)}
-              />
-            ))
-          }
-        </div>
+        <CardView
+          cards={cards}
+          handleDelete={(idx) => window.confirm('Are you sure you want to delete this note?') && deleteCard(idx)}
+          className={styles.noteContainer}
+        />
       </div>
       
       {
@@ -132,16 +91,15 @@ const App = () => {
       
       {
         showAddCollaborator && (
-        <AddCollaborator
-          onSubmit={() => {
-            alert('Email Sent');
-            setShowAddCollaborator(false);
-          }}
-          onCancel={() => setShowAddCollaborator(false)}
-        />
+          <AddCollaborator
+            onSubmit={() => {
+              alert('Email Sent');
+              setShowAddCollaborator(false);
+            }}
+            onCancel={() => setShowAddCollaborator(false)}
+          />
         )
       }
-      
     </div>
   );
 }

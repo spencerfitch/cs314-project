@@ -1,0 +1,69 @@
+
+.appContainer {
+    min-height: 100vh;
+}
+
+.header {
+    width: 100%;
+    height: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fb6376;
+}
+
+.controlRow {
+    position: relative;
+    height: 0;
+    width: 100%;
+    transition: ease-in-out .2s;
+    margin-bottom: 1em;
+}
+
+.controlContainer {
+    position: absolute;
+    top: -1.25em;
+    right: .25em;
+    width: fit-content;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 15px;
+}
+
+.controlContainer > button {
+    border-radius: 0;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+.controlContainer > button:last-of-type {
+    border-right: none;
+}
+
+.controlContainer > button:hover {
+    box-shadow: none;
+}
+
+.controlContainer > button:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 800px) {
+    .controlContainer {
+        position: relative;
+        margin: 0 auto;
+        top: -.5em;
+    }
+}
+
+.noteContainer {
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

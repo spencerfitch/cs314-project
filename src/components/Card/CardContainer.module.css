@@ -1,0 +1,39 @@
+
+.container {
+    border-radius: 15px;
+    background-color: #ffdccc;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1em;
+    margin: 1em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btnClose {
+    height: 0;
+    position: relative;
+}
+
+.btnClose button {
+    position: absolute;
+    right: -.7em;
+    top: 0.2em;
+    background: #f2f2f2;
+    color: #999;
+    border: solid 1px #999;
+    text-align: center;
+    width: 2em;
+    height: 2em;
+    font-weight: bold;
+    border-radius: 50%;
+    transition: all ease-in-out .2s;
+}
+
+.btnClose button:hover {
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border-color: red;
+}
+

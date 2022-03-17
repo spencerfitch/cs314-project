@@ -1,0 +1,47 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.textView {
+    padding: .2em;
+    color: white;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all ease-in-out .2s;
+}
+
+.textView:hover {
+    border: 2px solid lightgray;
+    cursor: pointer;
+}
+
+.inputContainer {
+    width: fit-content;
+    padding: .4em .5em;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.inputGroup {
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.inputGroup > input {
+    padding: .3em;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.inputGroup > input:focus {
+    outline: none;
+}
+
+.inputGroup > button {
+    border-radius: 0;
+}

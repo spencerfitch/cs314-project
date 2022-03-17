@@ -1,8 +1,10 @@
 import React, { forwardRef } from 'react';
 import CanvasDraw from "react-canvas-draw";
 
+import styles from './DrawCanvas.module.css';
+
 const DrawCanvas = forwardRef(({ width, height, ...props }, ref) => (
-  <div style={{border: '1px solid rgba(0, 0, 0, .2)', width: 'fit-content', margin: '0 auto'}}>
+  <div className={styles.container}>
     <CanvasDraw 
       ref={ref}
       brushRadius={3}

@@ -1,14 +1,25 @@
+import React from 'react';
 
-const StyledButton = ({ onClick, style, variant, children }) => (
-  <button
-    onClick={onClick}
-    className={`btn ${variant}`}
-    style={{
-      ...style
-    }}
-  >
-    { children }
-  </button>
-);
+import styles from './StyledButton.module.css';
+
+const StyledButton = ({ onClick, style, variant, children }) => {
+  const variantClass = (
+    (variant === 'primary')
+    ? styles.primary
+    : (variant === 'outline-primary')
+    ? styles.outlinePrimary
+    : `btn-${variant}`
+  );
+
+  return (
+    <button
+      onClick={onClick}
+      className={`btn ${variantClass}`}
+      style={style}
+    >
+      { children }
+    </button>
+  )
+};
 
 export default StyledButton;
