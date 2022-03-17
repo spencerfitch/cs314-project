@@ -1,24 +1,25 @@
 import React from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
+import { StyledButton } from '../inputs';
 
 const AddCollaborator = ({ onCancel, onSubmit }) => (
   <Modal show={true} onHide={onCancel}>
     <Modal.Header>
-      <Modal.Title>Add a collaborator to your card via email</Modal.Title>
+      <Modal.Title>Add a Collaborator</Modal.Title>
     </Modal.Header>
 
     <Modal.Body>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter recipient email" />
+          <Form.Label>Collaborator email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter collaborator's email..." />
         </Form.Group>
       </Form>
     </Modal.Body>
 
     <Modal.Footer>
-        <Button variant="secondary" onClick={onCancel}>Cancel</Button>
-        <Button variant="primary" onClick={onSubmit}>Send</Button>
+        <StyledButton variant="secondary" onClick={onCancel}>Cancel</StyledButton>
+        <StyledButton variant="primary" onClick={onSubmit}>Send</StyledButton>
     </Modal.Footer>
   </Modal>
 );
