@@ -40,7 +40,8 @@ const ClickableEdit = ({ value, setValue }) => {
 
             <StyledButton
               onClick={handleCancel}
-              variant={'secondary'}
+              variant={'outline-secondary'}
+              style={{ borderTop: 'none', borderBottom: 'none', borderRight: 'none'}}
             >
               Cancel
             </StyledButton>
