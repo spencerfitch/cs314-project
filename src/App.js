@@ -63,7 +63,7 @@ const App = () => {
 
         <CardView
           cards={cards}
-          handleDelete={(idx) => window.confirm('Are you sure you want to delete this card?') && deleteCard(idx)}
+          handleDelete={(idx) => window.confirm('Are you sure you want to delete this note?') && deleteCard(idx)}
           className={styles.noteContainer}
         />
       </div>
