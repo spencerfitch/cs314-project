@@ -1,12 +1,21 @@
-import { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
 
-import './App.css';
+import styles from './App.module.css';
+
 import { sampleCards } from "./utils";
-
 import { ClickableEdit, StyledButton } from "./components/inputs";
 import { AddNote, AddCollaborator, SendCard } from "./components/modals";
 import Card from './components/Card';
+
+const ControlButton = ({ onClick, children }) => (
+  <StyledButton
+    style={{ fontSize: 'large' }}
+    variant={'primary'}
+    onClick={onClick}
+  >
+    {children}
+  </StyledButton>
+);
 
 const App = () => {
   const [headingText, setHeadingText] = useState('Happy Birthday Tom');
@@ -25,78 +34,30 @@ const App = () => {
   }
 
   return (
-    <div style={{ minHeight: '100vh'}}>
+    <div className={styles.appContainer}>
       <div>
-        <div 
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            backgroundColor: 'lightcoral',
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingTop: '.25em',
-          }}
-        >
+        <div className={styles.header}>
           <ClickableEdit
             value={headingText}
             setValue={setHeadingText}
           />
-          
-          <div 
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              backgroundColor: 'lightblue',
-              padding: '.25em 1em',
-              width: '100%',
-              alignItems: 'right',
-            }}
-          >
-            <StyledButton
-              style={{
-                fontSize: 'large',
-              }}
-              variant={'btn-primary'}
-              onClick={() => setShowAddCard(true)}
-            >
-              Add a Note
-            </StyledButton>
-
-            <StyledButton
-              style={{
-                marginLeft: '1em',
-                fontSize: 'large',
-              }}
-              variant={'btn-primary'}
-              onClick={() => setShowAddCollaborator(true)}
-            >
-              Add Collaborator
-            </StyledButton>
-
-            <StyledButton
-              style={{
-                marginLeft: '1em',
-                fontSize: 'large',
-              }}
-              variant={'btn-primary'}
-              onClick={() => setShowSendCard(true)}
-            >
-              Send Card
-            </StyledButton>
-          </div>
-          
         </div>
 
-        <div 
-          style={{ 
-            display: 'flex',
-            justifyContent: 'space-around',
-            flexWrap: 'wrap',
-            padding: '1em',
-          }}
-        >
+        <div className={styles.controlContainer}>
+          <ControlButton onClick={() => setShowAddCard(true)}>
+            Add Note
+          </ControlButton>
+
+          <ControlButton onClick={() => setShowAddCollaborator(true)}>
+            Add Collaborator
+          </ControlButton>
+
+          <ControlButton onClick={() => setShowSendCard(true)}>
+            Send Card
+          </ControlButton>
+        </div>
+
+        <div className={styles.noteContainer}>
           {
             cards.map((card, idx) => (
               <Card 

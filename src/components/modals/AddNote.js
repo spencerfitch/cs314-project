@@ -102,10 +102,10 @@ const AddNote = ({ onSubmit, onCancel }) => {
       </Modal.Body>
 
       <Modal.Footer>
-        <StyledButton onClick={onCancel} variant={'btn-secondary'}>
+        <StyledButton onClick={onCancel} variant={'secondary'}>
           Close
         </StyledButton>
-        <StyledButton onClick={handleSubmit} variant={'btn-primary'}>
+        <StyledButton onClick={handleSubmit} variant={'primary'}>
           Add
         </StyledButton>
       </Modal.Footer>
