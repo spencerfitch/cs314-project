@@ -1,22 +1,10 @@
 import React from 'react';
 
-import { StyledButton } from '../inputs';
 import { DisplayCanvas } from '../canvas';
 
-import styles from './Card.module.css';
 import CardContainer from './CardContainer';
 
-/*
-<StyledButton 
-onClick={handleDelete}
-variant={'light'}
-style={{ width: 'fit-content', marginLeft: '.5em' }}
->
-Delete
-</StyledButton>
-*/
-
-const Card = ({ data, style, handleDelete, handleEdit }) => (
+const Card = ({ data, style, handleDelete }) => (
   <CardContainer style={{ minWidth: '400px', ...style }} handleClose={handleDelete}>
     {
       data.drawing && (
