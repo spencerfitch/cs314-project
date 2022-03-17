@@ -3,7 +3,7 @@ import React from "react";
 import styles from './CardContainer.module.css';
 
 const CardContainer = ({ handleClose, style, children }) => (
-  <div>
+  <div style={style}>
     <div className={styles.btnClose}>
       <button onClick={handleClose}>
         ✕
@@ -12,7 +12,6 @@ const CardContainer = ({ handleClose, style, children }) => (
 
     <div
       className={styles.container}
-      style={style}
     >
       { children }
     </div>

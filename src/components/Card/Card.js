@@ -5,7 +5,10 @@ import { DisplayCanvas } from '../canvas';
 import CardContainer from './CardContainer';
 
 const Card = ({ data, style, handleDelete }) => (
-  <CardContainer style={{ minWidth: '400px', ...style }} handleClose={handleDelete}>
+  <CardContainer 
+    handleClose={handleDelete}
+    style={{ minWidth: '400px', ...style }}
+  >
     {
       data.drawing && (
         <DisplayCanvas
@@ -15,7 +18,9 @@ const Card = ({ data, style, handleDelete }) => (
         />
       )
     }
+
     <p>{ data.message }</p>
+
     {
       data.signature && (
         <DisplayCanvas

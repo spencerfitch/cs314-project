@@ -5,7 +5,7 @@ import styles from './App.module.css';
 import { sampleCards } from "./utils";
 import { ClickableEdit, StyledButton } from "./components/inputs";
 import { AddNote, AddCollaborator, SendCard } from "./components/modals";
-import Card from './components/Card';
+import CardView from "./components/CardView";
 
 const ControlButton = ({ onClick, children }) => (
   <StyledButton
@@ -57,17 +57,11 @@ const App = () => {
           </ControlButton>
         </div>
 
-        <div className={styles.noteContainer}>
-          {
-            cards.map((card, idx) => (
-              <Card 
-                key={idx} 
-                data={card}
-                handleDelete={() => window.confirm('Are you sure you want to delete this card?') && deleteCard(idx)}
-              />
-            ))
-          }
-        </div>
+        <CardView
+          cards={cards}
+          handleDelete={(idx) => window.confirm('Are you sure you want to delete this card?') && deleteCard(idx)}
+          className={styles.noteContainer}
+        />
       </div>
       
       {
@@ -93,16 +87,15 @@ const App = () => {
       
       {
         showAddCollaborator && (
-        <AddCollaborator
-          onSubmit={() => {
-            alert('Email Sent');
-            setShowAddCollaborator(false);
-          }}
-          onCancel={() => setShowAddCollaborator(false)}
-        />
+          <AddCollaborator
+            onSubmit={() => {
+              alert('Email Sent');
+              setShowAddCollaborator(false);
+            }}
+            onCancel={() => setShowAddCollaborator(false)}
+          />
         )
       }
-      
     </div>
   );
 }
